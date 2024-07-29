@@ -1,9 +1,11 @@
-const userName = prompt("Por favor, ingresa tu nombre:");
+let userName;
+do {
+  userName = prompt("Por favor, ingresa tu nombre:");
+} while (userName === "");
 
-alert(userName + ", te doy la bienvenida a esta aplicación web :)");
+alert("¡Hola, " + userName + "! Te doy la bienvenida a esta aplicación de seguimiento de lecturas :)");
 
 console.log(userName);
-
 
 function Book(author, title, date, finished) {
     this.author = author;
@@ -12,11 +14,17 @@ function Book(author, title, date, finished) {
     this.finished = finished;
   }
   
-  const addBook = new Book(
+  const newBook = new Book(
     prompt("Ingresa el autor del libro:"),
     prompt("Ingresa el título del libro:"),
     prompt("Ingresa la fecha de hoy"),
     confirm("¿Has terminado de leer el libro? (OK = sí, Cancelar = no)")
   );
+
+  const finish = "salir";
   
-  console.log(addBook);
+  console.log(newBook); 
+
+  do {
+    newBook;
+  } while (newBook === null);
