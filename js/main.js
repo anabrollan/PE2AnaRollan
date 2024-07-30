@@ -1,10 +1,9 @@
 let userName;
 do {
-userName = prompt("Por favor, ingresa tu nombre:");
+    userName = prompt("Por favor, ingresa tu nombre:");
 } while (userName === "" || userName === null);
 
 alert("¡Hola, " + userName + "! Te doy la bienvenida a esta aplicación de seguimiento de lecturas :)");
-
 console.log(userName);
 
 class Book {
@@ -16,32 +15,38 @@ class Book {
     }
 }
 
-let author, title, date, finished;
+let books = [];
 
-do {
-    author = prompt("Ingresa el autor/-a del libro");
-} while (author === "" || author === null);
+while (true) {
+    let author = "";
+    let title = "";
+    let date = "";
 
-do {
-    title = prompt("Ingresa el título del libro");
-} while (title === "" || title === null);
+    do {
+        author = prompt("Ingresa el autor del libro (o escribe 'salir' para terminar):");
+        if (author === null) author = ""; 
+    } while (author === "" && author.toLowerCase() !== "salir");
+    if (author.toLowerCase() === "salir") break;
 
-do {
-    date = prompt("Ingresa la fecha de hoy");
-} while (date === "" || date === null);
+    do {
+        title = prompt("Ingresa el título del libro (o escribe 'salir' para terminar):");
+        if (title === null) title = ""; 
+    } while (title === "" && title.toLowerCase() !== "salir");
+    if (title.toLowerCase() === "salir") break;
 
-finished = confirm("¿Has terminado de leer el libro? (OK = sí, Cancelar = no)");
+    do {
+        date = prompt("Ingresa la fecha de hoy (o escribe 'salir' para terminar):");
+        if (date === null) date = ""; 
+    } while (date === "" && date.toLowerCase() !== "salir");
+    if (date.toLowerCase() === "salir") break;
 
-let newBook = new Book(author, title, date, finished);
+    let finished = confirm("¿Has terminado de leer el libro? (OK = sí, Cancelar = no)");
 
-console.log(newBook);
+    let newBook = new Book(author, title, date, finished);
+    books.push(newBook);
 
+    alert("Libro agregado: " + title + " de " + author);
+}
 
-
-let finish = "salir";
-
-console.log(newBook); 
-
-do {
-    newBook;
-} while (newBook === null);
+console.log("Lista de libros:");
+console.log(books);
