@@ -35,11 +35,19 @@ while (true) {
     if (title.toLowerCase() === "salir") break;
 
     do {
-        date = prompt("Ingresa la fecha de hoy (o escribe 'salir' para terminar):");
+        date = prompt("Ingresa la fecha de hoy (DD-MM-AAAA):");
         if (date === null) date = ""; 
+    
+        if (date !== "") {
+            if (date.length !== 10 || date[2] !== '-' || date[5] !== '-') {
+                alert("Formato de fecha no válido. Por favor, usa el formato DD-MM-AAAA.");
+                date = ""; 
+            }
+        }
     } while (date === "" && date.toLowerCase() !== "salir");
     if (date.toLowerCase() === "salir") break;
-
+    
+    
     let finished = confirm("¿Has terminado de leer el libro? (OK = sí, Cancelar = no)");
 
     let newBook = new Book(author, title, date, finished);
