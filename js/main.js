@@ -50,6 +50,8 @@ while (true) {
     
     let finished = confirm("¿Has terminado de leer el libro? (OK = sí, Cancelar = no)");
 
+    
+
     let newBook = new Book(author, title, date, finished);
     books.push(newBook);
 
@@ -58,3 +60,30 @@ while (true) {
 
 console.log("Lista de libros:");
 console.log(books);
+
+function findBook() {
+    let searchTitle = prompt("Escribe el título del libro que quieres buscar (o escribe 'salir' para terminar)");
+    if (searchTitle !== null && searchTitle.toLowerCase() !== "salir") {
+        let foundBook = books.find(book => book.title.toLowerCase() === searchTitle.toLowerCase());
+        if (foundBook) {
+            alert("Book found: " + foundBook.title + " by " + foundBook.author);
+        } else {
+            alert("Book not found.");
+        }
+    } else if (searchTitle !== null && searchTitle.toLowerCase() === "salir") {
+        return false;
+    }
+    return true;
+}
+
+while (true) {
+    let action = prompt("¿Quieres buscar un libro o salir?").toLowerCase();
+    if (action === "buscar") {
+        let continueSearch = true;
+        while (continueSearch) {
+            continueSearch = findBook();
+        }
+    } else if (action === "salir") {
+        break;
+    }
+}
